@@ -1,4 +1,4 @@
-# Code & Data for "Do Matching Frictions Explain Unemployment? Not in Bad Times"
+# Do Matching Frictions Explain Unemployment? Not in Bad Times: Code and Data
 
 This repository contains the code and data accompanying the article ["Do Matching Frictions Explain Unemployment? Not in Bad Times"](https://pascalmichaillat.org/1/), written by [Pascal Michaillat](https://pascalmichaillat.org), and published in the [American Economic Review](https://doi.org/10.1257/aer.102.4.1721) in June 2012.
 
