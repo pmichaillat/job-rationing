@@ -25,7 +25,7 @@ q = zeros(neq*nlead, neq*(nlag+nlead));
 [rc,cc] = size(cofb);
 q(1:rc,1:cc) = cofb;
 
-if( nlead > 1 ) 
+if( nlead > 1 )
 
    for i = 1:(nlead-1)
       rows = i*neq + (1:neq);

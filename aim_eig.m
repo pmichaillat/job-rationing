@@ -35,7 +35,7 @@ function [b,rts,ia,nexact,nnumeric,lgroots,mcode] = aim_eig(h,neq,nlag,nlead,con
 %    mcode     Return code: see function aimerr.
 
 
-if(nlag<1 || nlead<1) 
+if(nlag<1 || nlead<1)
     error('Aim_eig: model must have at least one lag and one lead.');
 end
 
@@ -58,14 +58,14 @@ rts      = zeros(qcols,1);
 
 [h,q,iq,nexact] = ex_shift(h,q,iq,qrows,qcols,neq);
 
-   if (iq>qrows) 
+   if (iq>qrows)
       mcode = 61;
       return;
    end
 
 [h,q,iq,nnumeric] = numshift(h,q,iq,qrows,qcols,neq,condn);
 
-   if (iq>qrows) 
+   if (iq>qrows)
       mcode = 62;
       return;
    end

@@ -30,7 +30,7 @@ if m ~= n
 end
 c(m)=0;
 c(m-1)=0;
-b(m)=0;  
+b(m)=0;
 
 if m ~= length(b) &  m ~= length(c)
     error('a,b,c must have the same dimension');
