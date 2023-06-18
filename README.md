@@ -10,17 +10,17 @@ The paper and its online appendix are available at https://pascalmichaillat.org/
 
 The folder `data` contains text files with data from the Bureau of Labor Statistics (BLS). The data describe key labor market variables and are used in the simulations. Each text files contains one time series:
 
-* `CPI-URBAN.txt` – Urban consumption price index from BLS
-* `CPS-UL.txt` – Unemployment level from Current Population Survey (CPS)
-* `CPS-UR.txt` – Unemployment rate from CPS
-* `MSPC-EMP.txt` – Employment level from Major Sector Productivity and
++ `CPI-URBAN.txt` – Urban consumption price index from BLS
++ `CPS-UL.txt` – Unemployment level from Current Population Survey (CPS)
++ `CPS-UR.txt` – Unemployment rate from CPS
++ `MSPC-EMP.txt` – Employment level from Major Sector Productivity and
 Costs (MSPC)
-* `MSPC-OUTPUT.txt` – Output level from MSPC
-* `HELPWANT.txt` – Help Wanted Advertising Index from the Conference
++ `MSPC-OUTPUT.txt` – Output level from MSPC
++ `HELPWANT.txt` – Help Wanted Advertising Index from the Conference
 Board
-* `JOLTS-JOLNF.txt` – Job-opening level in the nonfarm business sector from
++ `JOLTS-JOLNF.txt` – Job-opening level in the nonfarm business sector from
 the Job Opening and Labor Turnover Survey (JOLTS)
-* `CES-HWAGEPROD.txt` – Average hourly earnings of production and  nonsupervisory workers from the Current Employment Survey (CES)
++ `CES-HWAGEPROD.txt` – Average hourly earnings of production and  nonsupervisory workers from the Current Employment Survey (CES)
 
 The readme files `CES_README.txt`, `CPI_README.txt`, `CPS_README.txt`, `HELPWANT_README.txt`, `MSPC_README.txt`, and `JOLTS_README.txt` provide details on the data.
 
@@ -32,35 +32,35 @@ The simulations are conducted with MATLAB.
 
 The simulations rely on a number of helper scripts and functions:
 
-* `reduform.m`, `shftrght.m`, `vech.m`, `STEADYLL.m`, `aim_eig.m`, `aimerr.m`, `build_a.m`, `copy_w.m`, `eigsys.m`, `ex_shift.m`, `numshift.m`, `obstruct.m`, `penta2.m`, `LIN_DSGE.m`, `LIN_DSGE_c.m`, `LIN_DSGE_g.m`, `setupsimul.m`, `setupsimul_1600.m`, `setupsimul_c.m`, `setupsimul_g.m`, `setupsimul_robust.m` – Solve the loglinear DSGE model with job rationing and matching frictions
-* `OLS.m`, `SUMSTAT.m`, `ACF.m`, `AR.m,` `AUTOCORREL.m` – Perform statistical analysis
-* `MAKEMC.m`, `MCSOLVE.m`, `OBJEULER.m`, `SHOOTING.m`, `SIMULFT.m`, `SOLVESYS.m`, `STEADYGE.m` – Solve the nonlinear DSGE model using the Fair-Taylor algorithm
-* `QTOW.m`, `QUARTER.m`, `hpfilter.m`, `TECHNO_1600.m`, `TECHNO.m`, `TFP_1964_2009.m`, `W2QUARTER.m`, `data_1964_2009.m`, `bayesdata.m`, `bayesdata1600.m` – Fetch, prepare, and transform data
-* `PROD.m`, `FINDTH.m`, `CREATEU.m` – Perform useful calculations
-* `calibration.m`, `setup.m`, `setup_elasticity.m`, `setup_g.m`, `setup_graph.m`, `setup_MPR.m`, `setup_robust.m`, `setup_robusthigh.m`, `setup_robustlow.m` – Calibrate parameters used in simulations. Calibrated values are summarized in Table 1 and Table A6.
++ `reduform.m`, `shftrght.m`, `vech.m`, `STEADYLL.m`, `aim_eig.m`, `aimerr.m`, `build_a.m`, `copy_w.m`, `eigsys.m`, `ex_shift.m`, `numshift.m`, `obstruct.m`, `penta2.m`, `LIN_DSGE.m`, `LIN_DSGE_c.m`, `LIN_DSGE_g.m`, `setupsimul.m`, `setupsimul_1600.m`, `setupsimul_c.m`, `setupsimul_g.m`, `setupsimul_robust.m` – Solve the loglinear DSGE model with job rationing and matching frictions
++ `OLS.m`, `SUMSTAT.m`, `ACF.m`, `AR.m,` `AUTOCORREL.m` – Perform statistical analysis
++ `MAKEMC.m`, `MCSOLVE.m`, `OBJEULER.m`, `SHOOTING.m`, `SIMULFT.m`, `SOLVESYS.m`, `STEADYGE.m` – Solve the nonlinear DSGE model using the Fair-Taylor algorithm
++ `QTOW.m`, `QUARTER.m`, `hpfilter.m`, `TECHNO_1600.m`, `TECHNO.m`, `TFP_1964_2009.m`, `W2QUARTER.m`, `data_1964_2009.m`, `bayesdata.m`, `bayesdata1600.m` – Fetch, prepare, and transform data
++ `PROD.m`, `FINDTH.m`, `CREATEU.m` – Perform useful calculations
++ `calibration.m`, `setup.m`, `setup_elasticity.m`, `setup_g.m`, `setup_graph.m`, `setup_MPR.m`, `setup_robust.m`, `setup_robusthigh.m`, `setup_robustlow.m` – Calibrate parameters used in simulations. Calibrated values are summarized in Table 1 and Table A6.
 
 ### Scripts for main-text results
 
 The results of the numerical simulations in the main text are obtained by running the following scripts:
 
-* `diagram_paper.m` – Draw the equilibrium diagram for various search-and-matching models. Technology and recruiting cost take different values. Results presented in Figure 1.
-* `diagram_elast.m` – Compute the elasticity of labor market tightness with respect to recruiting cost in the model with wage rigidity and in the model with job rationing. Results are presented in Figure 2.
-* `irf_rationing.m` – Compute the impulse response functions of the loglinear DSGE model with job rationing and matching frictions. Results are presented in Figure 3.
-* `moments_US.m` – Compute the moments of key labor market variables using US data for the 1964–2009 period. US data are detrended using a Hoddrick-Prescott (HP) filter with parameter of 10000. Results are presented in Table 2.
-* `moments.m` – Compute the moments of key labor market variables simulated using the loglinear DSGE model with matching frictions and job rationing. Repeat the simulation of the model many times to obtain more precise estimates of the simulated moments. Report estimated second moments and standard deviation of these estimates. Results are presented in Table 3.
-* `script_FT.m` – Solve the nonlinear DSGE model with job rationing and matching frictions, when it is subject to the actual technology shock measured in US data. Compare actual unemployment to simulated unemployment. Decompose the simulated unemployment series into a frictional and a rationing component. Results are presented in Figures 4 and 5.
++ `diagram_paper.m` – Draw the equilibrium diagram for various search-and-matching models. Technology and recruiting cost take different values. Results presented in Figure 1.
++ `diagram_elast.m` – Compute the elasticity of labor market tightness with respect to recruiting cost in the model with wage rigidity and in the model with job rationing. Results are presented in Figure 2.
++ `irf_rationing.m` – Compute the impulse response functions of the loglinear DSGE model with job rationing and matching frictions. Results are presented in Figure 3.
++ `moments_US.m` – Compute the moments of key labor market variables using US data for the 1964–2009 period. US data are detrended using a Hoddrick-Prescott (HP) filter with parameter of 10000. Results are presented in Table 2.
++ `moments.m` – Compute the moments of key labor market variables simulated using the loglinear DSGE model with matching frictions and job rationing. Repeat the simulation of the model many times to obtain more precise estimates of the simulated moments. Report estimated second moments and standard deviation of these estimates. Results are presented in Table 3.
++ `script_FT.m` – Solve the nonlinear DSGE model with job rationing and matching frictions, when it is subject to the actual technology shock measured in US data. Compare actual unemployment to simulated unemployment. Decompose the simulated unemployment series into a frictional and a rationing component. Results are presented in Figures 4 and 5.
 
 ### Scripts for online-appendix results
 
 The results of the numerical simulations in the online appendix are obtained by running the following scripts:
 
-* `irf_c.m`, `irf_robust.m`, `irf_g.m` – Compute the impulse response functions of the loglinear DSGE model with job rationing and matching frictions for different calibrations of the recruiting cost, a different specification of recruiting expenses, and gradual wage adjustment. Results are reported in Figures A4, A7, and A8.
-* `moments_c.m`, `moments_robust.m`, `moments_g.m` – Compute the moments of key labor market variables simulated using the loglinear DSGE model with job rationing and matching frictions for different calibrations of the recruiting cost, a different specification of recruiting expenses, and gradual wage adjustment. Results are reported in Tables A1, A2, and A3.
-* `decomposition_shocks.m` – Decompose actual unemployment into frictional and rationing components using a variety of specifications for the type of shocks in the economy. Results are reported in Section A3.
-* `moments_US_1600.m` – Compute the moments of key labor market variables using US data for the 1964—2009 period; US data are detrended using a HP filter with conventional parameter of 1600. Results are presented in Table A4.
-* `script_FT_robusthigh.m`, `script_FT_robustlow.m`, `script_FT_TFP.m` – Solve the nonlinear DSGE model with job rationing and matching frictions when it is subject to the actual technology shock measured in US data. These scripts consider three variants from the analysis in the article: high recruiting cost, low recruiting cost, and capacity-adjusted technology series instead of measured technology series. The scripts compare actual unemployment to simulated unemployment and decompose the simulated unemployment series into a frictional and a rationing component. Results are reported in Figures A5, A6, and A9.
-* `compare_HP.m` – Run the entire numerical analysis presented in the manuscript for a  HP-filter parameter of 1600 instead of 10000. Results are reported in Section A4.
-* `compare_methods.m` – Compare the time series for unemployment and labor market tightness generated by the model with two different numerical solution methods: (i) a series of equilibria in static environments that abstract from aggregate shocks to technology and dynamics of unemployment; and (ii) the exact solution to the nonlinear model, which accounts fully for the dynamics of unemployment and rational expectations of stochastic process of technology and labor market variables. Results are presented in Section A5.
++ `irf_c.m`, `irf_robust.m`, `irf_g.m` – Compute the impulse response functions of the loglinear DSGE model with job rationing and matching frictions for different calibrations of the recruiting cost, a different specification of recruiting expenses, and gradual wage adjustment. Results are reported in Figures A4, A7, and A8.
++ `moments_c.m`, `moments_robust.m`, `moments_g.m` – Compute the moments of key labor market variables simulated using the loglinear DSGE model with job rationing and matching frictions for different calibrations of the recruiting cost, a different specification of recruiting expenses, and gradual wage adjustment. Results are reported in Tables A1, A2, and A3.
++ `decomposition_shocks.m` – Decompose actual unemployment into frictional and rationing components using a variety of specifications for the type of shocks in the economy. Results are reported in Section A3.
++ `moments_US_1600.m` – Compute the moments of key labor market variables using US data for the 1964—2009 period; US data are detrended using a HP filter with conventional parameter of 1600. Results are presented in Table A4.
++ `script_FT_robusthigh.m`, `script_FT_robustlow.m`, `script_FT_TFP.m` – Solve the nonlinear DSGE model with job rationing and matching frictions when it is subject to the actual technology shock measured in US data. These scripts consider three variants from the analysis in the article: high recruiting cost, low recruiting cost, and capacity-adjusted technology series instead of measured technology series. The scripts compare actual unemployment to simulated unemployment and decompose the simulated unemployment series into a frictional and a rationing component. Results are reported in Figures A5, A6, and A9.
++ `compare_HP.m` – Run the entire numerical analysis presented in the manuscript for a  HP-filter parameter of 1600 instead of 10000. Results are reported in Section A4.
++ `compare_methods.m` – Compare the time series for unemployment and labor market tightness generated by the model with two different numerical solution methods: (i) a series of equilibria in static environments that abstract from aggregate shocks to technology and dynamics of unemployment; and (ii) the exact solution to the nonlinear model, which accounts fully for the dynamics of unemployment and rational expectations of stochastic process of technology and labor market variables. Results are presented in Section A5.
 
 ## Software
 
