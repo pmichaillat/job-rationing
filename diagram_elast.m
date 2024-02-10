@@ -1,7 +1,5 @@
 %==================================================================================================
-%Diagram for elasticities in equilibrium
-%%	Created by Pascal Michaillat, London School of Economics on 2011-02-07
-%%	Rev. by Pascal Michaillat on 2011-02-07: Add a diagram to compare level of frictional unemployment across models
+% Diagram for elasticities in equilibrium
 %==================================================================================================
 
 %  %general setup

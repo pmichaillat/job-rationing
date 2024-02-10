@@ -2,8 +2,6 @@
 %% construct TH -- stochastic equilibrium: u is jump variable, and RE
 %% construct TH0 -- steady-state equilibrium: u is jump variable, no aggregate shocks
 %% TH, TH0 are row vectors of the same size as A and PI 
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
-%%	Rev. by Pascal Michaillat on 2011-01-07: clean up old global parameters
 %====================================================
 
 function [TH,TH0]=MCSOLVE(PI,A)

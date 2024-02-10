@@ -1,7 +1,5 @@
 %%==============================================================================
 %% Compute IRFs of log-linearized DSGE model with job rationing and matching frictions
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
-%%	Rev. by Pascal Michaillat on 2011-01-08: Modify to reduce the number of IRFs displayed to 8: a,Y,W,H,TH,U,UR,UF
 %%==============================================================================
 
 clear all;close all;

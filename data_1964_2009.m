@@ -3,9 +3,6 @@
 %% ux: detrended unemployment series, with mean 5.8%
 %% ax: detrended technology series, with mean 1
 %% amc: AX cast into the state space A for the technology Markov Chain
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
-%%	Rev. by Pascal Michaillat on 2010-07-23: Add estimation and discretization of technology series
-%%	Rev. by Pascal Michaillat on 2011-01-06: update directory for data source
 %%==============================================================================
 
 global nsample rho_a sigma_a

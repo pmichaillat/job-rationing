@@ -1,10 +1,7 @@
 %%==============================================================================
-%%construct the time series for technology from US data, HP-filter it, and report detrended series as well as momemts of series 
-%% moments are obtained by estimating a weekly AR(1) process
-%% focus on the period 1964:Q1--2009:Q2
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
-%%	Rev. by Pascal Michaillat on 2011-01-07: Use most recent MSPC data
-%%	Rev. by Pascal Michaillat on 2011-01-18: HP smoothing weight: 1600
+%% Construct the time series for technology from US data, HP-filter it, and report detrended series as well as momemts of series 
+%% Moments are obtained by estimating a weekly AR(1) process
+%% Focus on the period 1964:Q1--2009:Q2
 %%==============================================================================
 function [rho_a,sigma_a,ax]=TECHNO(alpha,nsample)
 

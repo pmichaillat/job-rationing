@@ -1,6 +1,5 @@
 %%=================================================================
 %%Compute steady state of decentralized economy for simulations of log-linear model
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
 %%=================================================================
 function [W_bar,C_bar,TH_bar,N_bar,H_bar,U_bar,UC_bar,UF_bar,Y_bar]=STEADYLL(w,gamma)
 

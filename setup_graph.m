@@ -1,9 +1,7 @@
-%=================================================================
-%setup the economic environment: real wage rigid, diminishing MPL, inelastic supply of labor; perfect competition; risk-neutral hh
-%weekly frequency (1/12 of a quarter), 1/4 of a month
-%07/02/2011
-%PM
-%=================================================================
+%%=================================================================
+%% Setup the economic environment: real wage rigid, diminishing MPL, inelastic supply of labor; perfect competition; risk-neutral hh
+%% Weekly frequency (1/12 of a quarter), 1/4 of a month
+%%=================================================================
 
 clear all;close all;
 

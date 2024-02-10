@@ -1,9 +1,8 @@
 %=================================================================
 %% Compute steady state of decentralized economy
-%solve for steady-state of  given w, gamma
-%w: rigid, steady-state wage level
-%gamma: real wage rigidy
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
+%% solve for steady-state of  given w, gamma
+%% w: rigid, steady-state wage level
+%% gamma: real wage rigidy
 %=================================================================
 
 function [Y]=STEADYGE(w,gamma)

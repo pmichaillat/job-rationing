@@ -5,7 +5,6 @@
 %% Rf: future recruiting costs
 %% a0: current technology
 %% hi: guess for number of hires
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-09 
 %%==============================================================================
 
 function [h]=OBJEULER(np,a0,Rf,hi)

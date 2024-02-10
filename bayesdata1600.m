@@ -3,8 +3,6 @@
 %% ux: detrended unemployment series, with mean 5.8%
 %% ax: detrended technology series, with mean 1
 %% prodx: detrended technology series, with mean 1
-%%save in .mat file
-%%	Created by Pascal Michaillat, London School of Economics on 2011-01-20
 %%==============================================================================
 %close all;clear all;
 setup
@@ -133,17 +131,8 @@ wnl=QTOW(rwx);
 thnl=QTOW(thx);
 
 %%==============================================================     save matrix
-%save('bayes.mat','a','prod','u')
 
 u=log(unl);a=log(anl);prod=log(prodnl); w=log(wnl);th=log(thnl);
 nnl=(1-unl(2:end))./(1-s);nnl=[nnl,nnl(end)];n=log(nnl);nx=nnl(1:12:end);
 
-%  save('logbayes2prod.mat','prod','n')
-%  save('logbayes2w.mat','w','n')
-%  save('logbayes1.mat','n')
-%  %save('logbayes15.mat','a','u')
-%  %save('logbayes25.mat','u','w')
-%  save('logbayes3.mat','u','prod','th')
-%  save('logbayes3b.mat','u','prod','th','w')
-%  save('logbayes3c.mat','u','prod','w')
-save('logbayesAER1600.mat','prod','n','w','th')
+% save('logbayesAER1600.mat','prod','n','w','th')

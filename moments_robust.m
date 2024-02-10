@@ -1,8 +1,5 @@
 %%==============================================================
 %% moments of linear DSGE model (already in logs)
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
-%%	Rev. by Pascal Michaillat on 2011-01-06: HP-filter model-generated data
-%%	Rev. by Pascal Michaillat on 2011-01-08: Checks the robustness of various parameters from the calibration
 %%=============================================================
 
 clear all;close all;

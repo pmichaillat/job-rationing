@@ -1,8 +1,5 @@
 %%==============================================================================
 %% Compute IRFs of log-linearized DSGE model with job rationing and matching frictions
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
-%%	Rev. by Pascal Michaillat on 2011-01-08: Modify to reduce the number of IRFs displayed to 8: a,Y,W,H,TH,U,UR,UF
-%%	Rev. by Pascal Michaillat on 2011-01-14: robustness checks for recruiting cost c
 %%==============================================================================
 
 clear all;
@@ -56,7 +53,6 @@ figure(1)
 for j=1:8
   subplot(4,2,j)
   hold on
-%  plot(rang,IRF(gra(j),rang),':','Color',[0 0.5 0],'LineWidth',3)
   plot(rang,IRF(gra(j),rang),'--','Color','r','LineWidth',3)
   set(gca,'YGrid','on','XTickLabel','','FontSize',14)
   xlim([0 top]) ;

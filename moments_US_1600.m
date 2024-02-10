@@ -1,10 +1,7 @@
 %==========================================================
-%Moments of US quarterly data, HP(10^5)-filtered
+% Moments of US quarterly data, HP(10^5)-filtered
 % focus on U,V,TH,W,Y,A 
 % period: 1964:Q1--2009:Q2
-%%	Created by Pascal Michaillat, London School of Economics on 2010-10-20
-%%	Rev. by Pascal Michaillat on 2011-01-07: Focus on US data for AER
-%%	Rev. by Pascal Michaillat on 2011-01-18: HP smoothing weight: 1600
 %==========================================================
 
 clear all;close all;

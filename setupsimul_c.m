@@ -1,6 +1,5 @@
 %%==============================================================================
-%%                  Set up for simulation of log-linear model with job rationing for IRF and simulated moments
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
+%% Set up for simulation of log-linear model with job rationing for IRF and simulated moments
 %%==============================================================================
 
 

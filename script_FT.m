@@ -1,11 +1,6 @@
 %%==============================================================================
 %% Run a Fair-Taylor (1983) algorithm to solve the DSGE model using actual technology series
 %% Compute a weekly series for unemployment, and a weekly series for labor market tightness
-%% All results saved as AER.mat
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
-%%	Rev. by Pascal Michaillat on 2010-07-12: create weekly series to be consistent with calibration
-%%	Rev. by Pascal Michaillat on 2010-08-19: new legend in graphs
-%%	Rev. by Pascal Michaillat on 2011-01-06: HP-filter simulated series to make it comparable to empirical series
 %%==============================================================================
 
 clear all; close all;

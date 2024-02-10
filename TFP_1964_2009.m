@@ -3,7 +3,6 @@
 %% ux: detrended unemployment series, with mean 5.8%
 %% ax: detrended TFP series, with mean 1
 %% amc: AX cast into the state space A for the technology Markov Chain
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
 %%==============================================================================
 
 global nsample

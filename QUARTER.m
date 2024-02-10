@@ -1,8 +1,6 @@
 %=======================================================================
 %%Transform the array from monthly frequency to quarterly frequency.
 %Assumes always starts in January
-%09/29
-%%	Rev. by Pascal Michaillat on 2010-10-20: Simpler to use (no logs, no cells)
 %=======================================================================
 
 function RES=QUARTER(DAT)

@@ -1,7 +1,5 @@
 %%==============================================================================
-%%                          Create a time series for U froma  time series for TH
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-10
-%%	Rev. by Pascal Michaillat on 2011-02-07: For revision
+%% Create a time series for U froma  time series for TH
 %%==============================================================================
 
 function U_exact=CREATEU(THt,n0)

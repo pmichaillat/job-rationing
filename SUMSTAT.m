@@ -1,6 +1,5 @@
 %%=============================================
 %% Compute summary stat of matrix X (each row is an observation and each column is a variable.)
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
 %%=============================================
 
 

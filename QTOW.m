@@ -1,6 +1,5 @@
 %%==============================================================================
-%%                  Transform quarterly series to weekly series by interpolation
-%%	Created by Pascal Michaillat, London School of Economics on 2011-01-20
+%% Transform quarterly series to weekly series by interpolation
 %%==============================================================================
 
 function [wax]=QTOW(ax)

@@ -3,7 +3,6 @@
 %% with state space A (row) and transition matrix PI
 %% Column t is expectation at t-1, for t<=num+1
 %% Row s is conditional expectation in state s
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
 %=============================================
 
 function [EM]=EXPECTED_MC(PI,A,num);

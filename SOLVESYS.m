@@ -5,7 +5,6 @@
 %% a0: current technology
 %% hi: initial guess for h
 %% Yf: expectation for Y in the next period
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-09
 %%=================================================================
 
 function [Y]=SOLVESYS(Yp,Yf,a0,hi)

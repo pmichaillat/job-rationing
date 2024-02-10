@@ -1,7 +1,6 @@
 %%==============================================================================
 %% Redo analysis with HP weight of 1600
 %% Checks that moments are similar, fit of model (comparison of moments), simulated and actual unemployment series
-%%	Created by Pascal Michaillat, London School of Economics on 2011-01-07
 %%==============================================================================
 
 clear all;close all;

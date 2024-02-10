@@ -1,6 +1,5 @@
 %=================================================================
 %% Find theta in steady state for GE model, from FOC of firms
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
 %=================================================================
 
 function res=FINDTH(w,gamma)

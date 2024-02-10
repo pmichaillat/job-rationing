@@ -9,9 +9,6 @@
 %% amc: time series of states
 %% n0: employment in past period
 %% output: time series for unemployment ut, labor market tightness tht, technology at, measure of layoffs sigmat
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
-%%	Rev. by Pascal Michaillat on 2010-07-12: In shooting algorithm, always start type III iteration with an EP of fixed length k1, 
-%% or an average of k1 and past value of kIII so that size of EP does not remain too long after bad iteration
 %==============================================================
 
 function [Yt]=SIMULFT(TH,A,wamc,n0,EY,YLR)

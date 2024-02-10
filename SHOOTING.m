@@ -9,8 +9,6 @@
 %% eII, eIII: final errors
 %% Er: final path of expectations from 2 to k+2h+1
 %% [Y1,er] is updated version of gr after 2 or 3 types of iteration (it may be longer if there are type III iterations)
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-09
-%%	Rev. by Pascal Michaillat on 2011-01-19: change tolerance parameters
 %=============================================
 
 function	[Y1,Er,kIII,eII,eIII,eII_record,eIII_record]=SHOOTING(Grt,Y0,s1,kIII)

@@ -1,10 +1,6 @@
 %%=================================================================
 %% Setup the economic environment: real wage rigid, diminishing MPL, inelastic supply of labor; perfect competition; risk-neutral hh
 %% Weekly frequency (1/12 of a quarter), 1/4 of a month
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
-%%	Rev. by Pascal Michaillat on 2010-07-23: Move the estimation and discretization of technology process to data script (eg TFP_1964_2009)
-%%	Rev. by Pascal Michaillat on 2011-01-07: cleanup file and keep only relevant parameters
-%%	Rev. by Pascal Michaillat on 2011-01-08: Checks the robustness of various parameters from the calibration
 %%=================================================================
 
 global delta eta c a alpha omega s  B r varsigma  u_target th_target w gamma ar

@@ -2,7 +2,6 @@
 %% construct MC to replicate AR(1) process with parameters rho_m, conditional variance sigma_e, and mean 0
 %% ns states
 %% Based on the algorithm described in Adda and Cooper (MIT Press, 2002)
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-08
 %%=============================================
 
 function [Z,PI,EPS]=MAKEMC(ns,rho_m,sigma_e)

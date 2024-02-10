@@ -1,8 +1,6 @@
 %=======================================================================
 %%Transform the array from weekly frequency to quarterly frequency.
 %Assumes always starts in January
-%%	Created by Pascal Michaillat, London School of Economics on 2011-01-21
-%% NOT FINISHED
 %=======================================================================
 
 function RES=W2QUARTER(DAT)

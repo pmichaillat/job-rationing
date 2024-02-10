@@ -1,8 +1,5 @@
 %%==============================================================================
 %%  Solve linear DSGE model calibrated at weekly frequency
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-26
-%%	Rev. by Pascal Michaillat on 2011-01-06: Limit amount of information displayed (cof, etc.)
-%%	Rev. by Pascal Michaillat on 2011-01-07: suppress as global var. (old notation)
 %%==============================================================================
 
 

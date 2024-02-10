@@ -1,8 +1,6 @@
 %%==============================================================================
 %% Run a Fair-Taylor (1983) algorithm to solve the DSGE model using actual TFP series
 %% Compute a weekly series for unemployment, and a weekly series for labor market tightness
-%% All results saved as AER.mat
-%%	Created by Pascal Michaillat, London School of Economics on 2010-07-16
 %%==============================================================================
 
 clear all; close all;

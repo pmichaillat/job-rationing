@@ -1,7 +1,6 @@
 %%==============================================================================
 %%  Back-out shocks to match data exactly, and compute decomposition accordingly
 %% for simplicity: abstract from dynamics (turnover dynamics do not matter, recruiting dynamics are not very important)
-%%	Created by Pascal Michaillat, London School of Economics on 2011-01-23
 %%==============================================================================
 
 %%====================================================================     Setup
@@ -133,7 +132,6 @@ figure(15)
  print('-depsc',['graph/shockeciw',nam,'.eps'])
 
 
-
 %%===================     Backout matching shocks, given that technology and wages are observed
 nx=nnl;
 ux=unl;
@@ -176,18 +174,10 @@ gtext('\leftarrow Rationing unemp.','FontSize',22)
 gtext('Frictional unemp.','FontSize',22)
 print('-depsc',['graph/deco3',nam,'.eps'])
 
-%thd=thnl(1:12:end);
-%nnlp=(1-unl)./(1-s);
-%hnl=nnl-(1-s).*nnlp;
-%fnl=hnl./unl;fd=fnl(1:12:end);
-%kappad=fd./f(thd');
-%omegax=omega.*kappad;
-
 figure(15)
  clf
  plot(omegay(1:12:end),'--r','LineWidth',4)
 % hold on
-% plot(omegax,'-b','LineWidth',4)
  ylabel('Matching efficiency','FontSize',22)
  set(gca,'YGrid','on','XGrid','on','FontSize',22)
 % ylim([0.9,1.1])
@@ -197,7 +187,6 @@ figure(15)
  h_legend=legend('Estimated','Actual')
  set(h_legend,'FontSize',22);  
  print('-depsc',['graph/shockomega',nam,'.eps'])
-
 
 
 %%===================     Backout matching shocks, given that technology is observed
@@ -237,16 +226,8 @@ print('-depsc',['graph/deco4',nam,'.eps'])
 
 omegad=(s.*nnl./unl).*thnl.^(eta-1);
 
-%nnlp=(1-unl)./(1-s);
-%hnl=nnl-(1-s).*nnlp;
-%fnl=hnl./unl;fd=fnl(1:12:end);
-%kappad=fd./f(thd');
-%omegax=omega.*kappad;
-
-
 figure(13)
  clf
-% plot(omegay(1:12:end),'--r','LineWidth',4)
 % hold on
  plot(omegad(1:12:end),'-b','LineWidth',4)
  ylabel('Matching efficiency','FontSize',22)
@@ -255,8 +236,6 @@ figure(13)
  xlim([1,182])
  set(gca,'XTick',xt)
  set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-% h_legend=legend('Estimated','Actual')
-% set(h_legend,'FontSize',22,'Location','NorthWest');  
  print('-depsc',['graph/shockomega3',nam,'.eps'])
 
 
