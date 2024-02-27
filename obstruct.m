@@ -1,6 +1,5 @@
 function scof = obstruct(cof,cofb,neq,nlag,nlead)
 
-%--------------------------------------------------------
 %
 % construct the coefficients in the observable structure.
 %    
@@ -13,10 +12,8 @@ function scof = obstruct(cof,cofb,neq,nlag,nlead)
 %   output:
 %            scof  observable structure coefficients
 %    
-%--------------------------------------------------------
 
 % append negative identity to cofb
-
 cofb = [cofb -eye(neq)];
 
 scof = zeros(neq,neq*(nlag+1));

@@ -1,11 +1,12 @@
 function [a,ia,js] = build_a(h,qcols,neq)
 
+%
 %  [a,ia,js] = build_a(h,qcols,neq)
 %
 %  Build the companion matrix, deleting inessential lags.
-
-
+%
 %  Solve for x_{t+nlead} in terms of x_{t+nlag},...,x_{t+nlead-1}.
+%
 
 qcols;
 neqi=neq;
@@ -27,10 +28,7 @@ end
 hrows      = qcols-neq+1:qcols;
 a(hrows,:) = h(:,left);
 
-%  Delete inessential lags and build index array js.  js indexes the
-%  columns in the big transition matrix that correspond to the
-%  essential lags in the model.  They are the columns of q that will
-%  get the unstable left eigenvectors. 
+%  Delete inessential lags and build index array js.  js indexes the columns in the big transition matrix that correspond to the essential lags in the model.  They are the columns of q that will get the unstable left eigenvectors. 
 
 js       = 1:qcols;
 zerocols = sum(abs(a)) == 0;

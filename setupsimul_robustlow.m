@@ -1,6 +1,6 @@
 %%==============================================================================
 %% Set up for simulation of log-linear model with job rationing for IRF and simulated moments
-%% Assume constant per-period vacancy-posting cost
+%% Assume low recruiting cost
 %%==============================================================================
 
 global  W_bar C_bar TH_bar  N_bar H_bar U_bar UC_bar UF_bar Y_bar 
@@ -9,7 +9,7 @@ global wpos cpos thpos npos hpos upos ypos apos  a_pos
 
 %% ---   Calibration ---
 
-setup; % Model parameters
+setup_robustlow; % Model parameters
 [W_bar,C_bar,TH_bar,N_bar,H_bar,U_bar,UC_bar,UF_bar,Y_bar]=STEADYLL(w,gamma); % Steady state
 nsample=182;
 [rho_a,sigma_a,ax]=TECHNO(alpha,nsample); % Technology process
@@ -27,4 +27,4 @@ a_pos   = 9;               % technology shock
 
 %% --- Solve log-linear model ---
 
-[AMAT,BMAT,SS,xeq,xvari]=LIN_DSGE_c(w,gamma,alpha); % To compute and plot impulse response use reduced form solution: x_t=amat*x_{t-1}+b*shock
+[AMAT,BMAT,SS,xeq,xvari]=LIN_DSGE(w,gamma,alpha); % To compute and plot impulse response use reduced form solution: x_t=amat*x_{t-1}+b*shock

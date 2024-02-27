@@ -1,5 +1,6 @@
 function [gx] = hpfilter(x,lambda,plotter)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
 % Author: Kurt Annen annen@web-reg.de
 % Date: 15/05/2004
 % Internet: www.web-reg.de
@@ -14,20 +15,17 @@ function [gx] = hpfilter(x,lambda,plotter)
 % lambda= Smoothing parameter (m: 14400, q: 1600, y: 100)
 % plot: to plot the result
 %
-%
-%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if nargin < 2
     error('Requires at least two arguments.');
 end
 
 [m,n] = size (x);
+
 if m < n
     x = x';
     m = n;
 end
-
 
 a(1)=lambda+1;
 a(2)=5*lambda+1;
@@ -44,4 +42,3 @@ g=penta2(x,a,b,c);
 gx=x-g;
 
 end
-

@@ -15,7 +15,7 @@ global q f u finv qinv uinv
 u0=1-(1-s).*np;
 w0=w.*a0^gamma;
 
-RECR=@(hx)(hx>0).*a0.*c./q(finv(abs(hx)./u0));%recruiting costs
+RECR=@(hx)(hx>0).*a0.*c./q(finv(abs(hx)./u0)); % Recruiting costs
 
 OBJF=@(hx)(RECR(hx)+w0-(1-s).*delta.*Rf-a0.*alpha.*(hx+(1-s).*np).^(alpha-1)).^2;
 [res,val,exitflag]=fsolve(OBJF,hi,optimset('TolFun',10^(-13)));

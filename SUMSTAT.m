@@ -11,5 +11,5 @@ autoc=[];
 for j=1:size(X,2)
 autoc=[autoc,AUTOCORREL(X(:,j),2)];
 end
-autoc=autoc(2,:); %only keep serial correlation
+autoc=autoc(2,:); % Keep serial correlation
 M=corrcoef(X);

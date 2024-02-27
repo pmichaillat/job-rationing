@@ -1,5 +1,6 @@
 function [x]= penta2(y,a,b,c)
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
 % Author: Kurt Annen annen@web-reg.de
 % Date: 15/05/2004
 % Internet: www.web-reg.de
@@ -14,7 +15,6 @@ function [x]= penta2(y,a,b,c)
 % b = 2. diagonal
 % c = 3. diagonal
 % 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 if nargin ~= 4
     error('penta(A,y) requires four arguments');

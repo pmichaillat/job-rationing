@@ -7,18 +7,18 @@ clear all; close all;
 
 global apos thpos npos mplpos hpos wpos Rpos ynum upos
 
-%%%%%%%%%%%  Setup   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---    Setup   ------
 
 setup; data_1964_2009;
-whp=10^5;%weight on hp filter
+whp=10^5; % Weight on HP filter
 
-%%%%%%%%%%%  As initial guess, solve for stochastic equilibrium   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  As initial guess, solve for stochastic equilibrium   ---
 
 [TH,TH0]=MCSOLVE(PI,A);
 
-%%%%%%%%%%%  Position of variables   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Position of variables   ---
 
-apos=1; 					% techno 
+apos=1; 					% technology 
 thpos   =  2;               % market tightness
 npos   =  3;               % employment
 upos   =  4;               % unemployment
@@ -28,8 +28,7 @@ Rpos   =  7;               % c*a/q(th)
 hpos=8;						% hire
 ynum=8;
 
-
-%%%%%%%%%%%  Initial guess of solution in any state: use stochastic steady-state values -- ynum*ns  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Initial guess of solution in any state: use stochastic steady-state ---values: ynum*ns  
 
 Y=zeros(ynum,ns);
 Y(apos,:)=A;
@@ -41,11 +40,11 @@ Y(wpos,:)=w.*A.^gamma;
 Y(Rpos,:)=c.*A./q(TH);
 Y(hpos,:)=s.*Y(npos,:);
 
-%%%%%%%%%%%  Construct 3D array of expectation based on stochastic solutions -- ynum*ns*k1  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Construct 3D array of expectation based on stochastic solutions: ---ynum*ns*k1  
 
 k2=400;%sufficiently long horizon to cover type-III iterations
-EA=EXPECTED_MC(PI,A,k2);% ns*k2
-ETH=EXPECTED_MC(PI,TH,k2);
+EA=EXPECTEDMC(PI,A,k2);% ns*k2
+ETH=EXPECTEDMC(PI,TH,k2);
 EY=zeros(ynum,ns,k2+1);%ynum*ns*k2
 EY(apos,:,:)=EA;
 EY(thpos,:,:)=ETH;
@@ -56,18 +55,16 @@ EN=(1-u(ETH))./(1-s);
 EY(npos,:,:)=EN;
 EY(mplpos,:,:)=alpha.*EA.*EN.^(alpha-1);
 EY(Rpos,:,:)=c.*EA./q(ETH);
-
 YLR=STEADYGE(w,gamma);%steady state
 
-%%%%%%%%%%%  Run the Fair-Taylor algorithm   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Run the Fair-Taylor algorithm   ---
 
-n0=(1-ux(1))./(1-s); %level of employment in data at t=-1
+n0=(1-ux(1))./(1-s); % Level of employment in data at t=-1
 [WYt]=SIMULFT(TH,A,wamc,n0,EY,YLR);
+Yt=WYt(:,1:12:end); % Extract quarterly series from weekly series
 
-Yt=WYt(:,1:12:end);%extract quarterly series from weekly series
 
-
-%%%%%%%%%%%  Plot decomposition of unemployment obtained with FT   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Plot decomposition of unemployment obtained with FT   ---
 
 At=Yt(apos,:);
 Ut=Yt(upos,:);
@@ -76,11 +73,10 @@ ut1=exp(ut0);
 Uthp=nairu.*ut1;
 THt=Yt(thpos,:);
 URt=max(1-((alpha./w).^(1./(1-alpha)).*At.^((1-gamma)./(1-alpha))),0);
-%URt=ur(At);
 UFt=Ut-URt;
 
 YY=[UFt',URt'];
-xt=[1,1+4.*10,1+4.*20,1+4.*30,1+4.*40];%plot on 1964--2009 period
+xt=[1,1+4.*10,1+4.*20,1+4.*30,1+4.*40]; % Plot on 1964--2009 period
 xx=[1:nsample];
 
 figure(1)
@@ -102,9 +98,10 @@ set(gca,'XTickLabel','1964|1974|1984|1994|2004')
 set(gca,'FontSize',22)
 gtext('\leftarrow Rationing unemp.','FontSize',22)
 gtext('Frictional unemp.','FontSize',22)
-print('-depsc','graph/DECOFT2.eps')
+print('-depsc','DECOFT2.eps')
 
-%%%%%%%%%%%  Compare actual and predicted unemployment   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Compare actual and predicted unemployment ---
+
  figure(3)
  clf
  plot(Uthp,'--r','LineWidth',4)
@@ -116,9 +113,9 @@ print('-depsc','graph/DECOFT2.eps')
  xlim([1,pas])
  set(gca,'XTick',xt)
  set(gca,'XTickLabel','1964|1974|1984|1994|2004')
- h_legend=legend('Simulated','Actual')
+ h_legend=legend('Simulated','Actual');
  set(h_legend,'FontSize',22,'Location','NorthWest');  
- print('-depsc','graph/UFTHP.eps')
+ print('-depsc','UFTHP.eps')
 
  figure(12)
  clf
@@ -131,9 +128,9 @@ print('-depsc','graph/DECOFT2.eps')
  xlim([1,pas])
  set(gca,'XTick',xt)
  set(gca,'XTickLabel','1964|1974|1984|1994|2004')
- h_legend=legend('Simulated and HP-filtered','Simulated')
+ h_legend=legend('Simulated and HP-filtered','Simulated');
  set(h_legend,'FontSize',22,'Location','NorthWest');  
- print('-depsc','graph/UFTHPcomp.eps')
+ print('-depsc','UFTHPcomp.eps')
 
  figure(13)
  clf
@@ -147,17 +144,17 @@ print('-depsc','graph/DECOFT2.eps')
  xlim([1,pas])
  set(gca,'XTick',xt)
  set(gca,'XTickLabel','1964|1974|1984|1994|2004')
- h_legend=legend('Actual','Simulated','Simulated and HP-filtered')
+ h_legend=legend('Actual','Simulated','Simulated and HP-filtered');
  set(h_legend,'FontSize',22,'Location','NorthWest');  
- print('-depsc','graph/UFTHPcomptot.eps')
+ print('-depsc','UFTHPcomptot.eps')
 
-%%%%%%%%%%%  Compare all different solution methods   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Compare all different solution methods   ---
 
 figure(2)
 clf
 plot(Ut,'-b','LineWidth',4)
 hold on
-plot(u(TH(amc)),'--red','LineWidth',4)
+plot(u(TH(amc)),'--r','LineWidth',4)
 plot(u(TH0(amc)),':','Color',[0,0.5,0],'LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
@@ -167,16 +164,16 @@ ylim([0,0.14])
 ylabel('Unemployment rate','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states','Steady states')
+h_legend=legend('Exact solution','Stochastic steady states','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsU2.eps')
+print('-depsc','solutionsU2.eps')
 
 
 figure(12)
 clf
 plot(THt,'-b','LineWidth',4)
 hold on
-plot(TH(amc),'--red','LineWidth',4)
+plot(TH(amc),'--r','LineWidth',4)
 plot(TH0(amc),':','Color',[0,0.5,0],'LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
@@ -185,18 +182,17 @@ xlim([0,182])
 ylabel('Labor market tightness','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states','Steady states')
+h_legend=legend('Exact solution','Stochastic steady states','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsTH2.eps')
+print('-depsc','solutionsTH2.eps')
 
-%%%%%%%%%%%  Compare exact with steady-state   %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%% ---  Compare exact with steady-state   ---
 
 figure(10)
 clf
 plot(Ut,'-b','LineWidth',4)
 hold on
-plot(u(TH0(amc)),'--red','LineWidth',4)
+plot(u(TH0(amc)),'--r','LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
@@ -205,16 +201,16 @@ ylim([0,0.14])
 ylabel('Unemployment rate','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Steady states')
+h_legend=legend('Exact solution','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsU6.eps')
+print('-depsc','solutionsU6.eps')
 
 
 figure(11)
 clf
 plot(THt,'-b','LineWidth',4)
 hold on
-plot(TH0(amc),'--red','LineWidth',4)
+plot(TH0(amc),'--r','LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
@@ -223,18 +219,17 @@ ylim([0,2])
 ylabel('Labor market tightness','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Steady states')
+h_legend=legend('Exact solution','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsTH6.eps')
+print('-depsc','solutionsTH6.eps')
 
-%%%%%%%%%%%  Compare exact with stochastic steady-state   %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%% ---  Compare exact with stochastic steady-state   ---
 
 figure(13)
 clf
 plot(Ut,'-b','LineWidth',4)
 hold on
-plot(u(TH(amc)),'--red','LineWidth',4)
+plot(u(TH(amc)),'--r','LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
@@ -243,16 +238,15 @@ ylim([0,0.14])
 ylabel('Unemployment rate','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states')
+h_legend=legend('Exact solution','Stochastic steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsU5.eps')
-
+print('-depsc','solutionsU5.eps')
 
 figure(14)
 clf
 plot(THt,'-b','LineWidth',4)
 hold on
-plot(TH(amc),'--red','LineWidth',4)
+plot(TH(amc),'--r','LineWidth',4)
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
@@ -261,6 +255,6 @@ ylim([0,2])
 ylabel('Labor market tightness','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states')
+h_legend=legend('Exact solution','Stochastic steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsTH5.eps')
+print('-depsc','solutionsTH5.eps')

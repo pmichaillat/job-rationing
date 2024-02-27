@@ -20,11 +20,11 @@ u0=1-(1-s).*np;
 w0=w.*a0^gamma;
 Rf=Yf(Rpos);
 
-%%%%%%%%%%%  Solve firm's Euler equation   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Solve firm's Euler equation  --- 
 
-h0=OBJEULER(np,a0,Rf,hi); %h can be <0 if there are layoffs
+h0=OBJEULER(np,a0,Rf,hi); % h can be <0 if there are layoffs
 	
-%%%%%%%%%%%  derive other solution values   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Derive other solution values ---  
 
 Y(apos)=a0;
 Y(hpos)=h0;

@@ -3,11 +3,11 @@
 %% with state space A (row) and transition matrix PI
 %% Column t is expectation at t-1, for t<=num+1
 %% Row s is conditional expectation in state s
-%=============================================
+%%=============================================
 
-function [EM]=EXPECTED_MC(PI,A,num);
+function [EM]=EXPECTEDMC(PI,A,num);
 
-EM=[A'];%current state
+EM=[A']; % Current state
 for i= 1:num
   EM=[EM,PI*EM(:,end)];
 end

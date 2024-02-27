@@ -1,5 +1,5 @@
 %%=============================================
-%% construct MC to replicate AR(1) process with parameters rho_m, conditional variance sigma_e, and mean 0
+%% Construct Markov chain to replicate AR(1) process with parameters rho_m, conditional variance sigma_e, and mean 0
 %% ns states
 %% Based on the algorithm described in Adda and Cooper (MIT Press, 2002)
 %%=============================================
@@ -12,6 +12,7 @@ EPS=[-25,sigma_m.*norminv(([2:ns]-1)./ns,0,1),25];
 Z=-ns.*sigma_m.*normpdf(EPS(2)./sigma_m,0,1);
 Z=[Z,ns.*sigma_m.*(normpdf(EPS(2:ns-1)./sigma_m,0,1)-normpdf(EPS(3:ns)./sigma_m,0,1))];
 Z=[Z,ns.*sigma_m.*normpdf(EPS(ns)./sigma_m,0,1)];
+
 for i=1:ns
    if (i==1) | (i==ns)
       pas=(EPS(i+1)-EPS(i))./(200*prec);

@@ -1,6 +1,6 @@
-%=================================================================
-%% Find theta in steady state for GE model, from FOC of firms
-%=================================================================
+%%=================================================================
+%% Find tightness in steady state for GE model, from FOC of firms
+%%=================================================================
 
 function res=FINDTH(w,gamma)
 global r c q B alpha markup u a

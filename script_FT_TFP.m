@@ -1,23 +1,24 @@
 %%==============================================================================
 %% Run a Fair-Taylor (1983) algorithm to solve the DSGE model using actual TFP series
 %% Compute a weekly series for unemployment, and a weekly series for labor market tightness
+%% Use utilization-adjusted TFP data constructed by Fernald (2009)
 %%==============================================================================
 
 clear all; close all;
 
 global apos thpos npos mplpos hpos wpos Rpos ynum upos
 
-%%%%%%%%%%%  Setup   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---    Setup   ---
 
 setup; TFP_1964_2009;
 
-%%%%%%%%%%%  As initial guess, solve for stochastic equilibrium   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  As initial guess, solve for stochastic equilibrium  ---
 
 [TH,TH0]=MCSOLVE(PI,A);
 
-%%%%%%%%%%%  Position of variables   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---   Position of variables   ---
 
-apos=1; 					% techno 
+apos=1; 					% technology 
 thpos   =  2;               % market tightness
 npos   =  3;               % employment
 upos   =  4;               % unemployment
@@ -27,8 +28,7 @@ Rpos   =  7;               % c*a/q(th)
 hpos=8;						% hire
 ynum=8;
 
-
-%%%%%%%%%%%  Initial guess of solution in any state: use stochastic steady-state values -- ynum*ns  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---  Initial guess of solution in any state: use stochastic steady-state values: ynum*ns  ---
 
 Y=zeros(ynum,ns);
 Y(apos,:)=A;
@@ -40,11 +40,11 @@ Y(wpos,:)=w.*A.^gamma;
 Y(Rpos,:)=c.*A./q(TH);
 Y(hpos,:)=s.*Y(npos,:);
 
-%%%%%%%%%%%  Construct 3D array of expectation based on stochastic solutions -- ynum*ns*k1  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+ %% ---   Construct 3D array of expectation based on stochastic solutions: ynum*ns*k1 ---  
 
 k2=400;%sufficiently long horizon to cover type-III iterations
-EA=EXPECTED_MC(PI,A,k2);% ns*k2
-ETH=EXPECTED_MC(PI,TH,k2);
+EA=EXPECTEDMC(PI,A,k2);% ns*k2
+ETH=EXPECTEDMC(PI,TH,k2);
 EY=zeros(ynum,ns,k2+1);%ynum*ns*k2
 EY(apos,:,:)=EA;
 EY(thpos,:,:)=ETH;
@@ -55,28 +55,24 @@ EN=(1-u(ETH))./(1-s);
 EY(npos,:,:)=EN;
 EY(mplpos,:,:)=alpha.*EA.*EN.^(alpha-1);
 EY(Rpos,:,:)=c.*EA./q(ETH);
-
 YLR=STEADYGE(w,gamma);%steady state
 
-%%%%%%%%%%%  Run the Fair-Taylor algorithm   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---    Run the Fair-Taylor algorithm   ---
 
-n0=(1-ux(1))./(1-s); %level of employment in data at t=-1
+n0=(1-ux(1))./(1-s); % Level of employment in data at t=-1
 [WYt]=SIMULFT(TH,A,wamc,n0,EY,YLR);
+Yt=WYt(:,1:12:end); % Extract quarterly series from weekly series
 
-Yt=WYt(:,1:12:end);%extract quarterly series from weekly series
-
-
-%%%%%%%%%%%  Plot decomposition of unemployment obtained with FT   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---   Plot decomposition of unemployment obtained with FT   ---
 
 At=Yt(apos,:);
 Ut=Yt(upos,:);
 THt=Yt(thpos,:);
 URt=max(1-((alpha./w).^(1./(1-alpha)).*At.^((1-gamma)./(1-alpha))),0);
-%URt=ur(At);
 UFt=Ut-URt;
 
 YY=[UFt',URt'];
-xt=[1,1+4.*10,1+4.*20,1+4.*30,1+4.*40];%plot on 1964--2009 period
+xt=[1,1+4.*10,1+4.*20,1+4.*30,1+4.*40]; % Plot on 1964--2009 period
 xx=[1:nsample];
 
 figure(1)
@@ -98,9 +94,10 @@ set(gca,'XTickLabel','1964|1974|1984|1994|2004')
 set(gca,'FontSize',22)
 gtext('\leftarrow Rationing unemp.','FontSize',22)
 gtext('Frictional unemp.','FontSize',22)
-print('-depsc','graph/DECOFT_TFP.eps')
+print('-depsc','DECOFT_TFP.eps')
 
-%%%%%%%%%%%  Compare actual and predicted unemployment   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% ---    Compare actual and predicted unemployment   ---
+
  figure(3)
  clf
  plot(Ut,'--r','LineWidth',4)
@@ -112,12 +109,11 @@ print('-depsc','graph/DECOFT_TFP.eps')
  xlim([1,pas])
  set(gca,'XTick',xt)
  set(gca,'XTickLabel','1964|1974|1984|1994|2004')
- h_legend=legend('Predicted','Actual')
+ h_legend=legend('Predicted','Actual');
  set(h_legend,'FontSize',22);  
- print('-depsc','graph/UFT_TFP.eps')
+ print('-depsc','UFT_TFP.eps')
 
-%%%%%%%%%%%  Compare different solution methods   %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
+%% ---    Compare different solution methods   ---
 
 figure(2)
 clf
@@ -132,10 +128,9 @@ xlim([0,182])
 ylabel('Unemployment rate','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states','Steady states')
+h_legend=legend('Exact solution','Stochastic steady states','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsU_TFP.eps')
-
+print('-depsc','solutionsU_TFP.eps')
 
 figure(12)
 clf
@@ -150,9 +145,6 @@ xlim([0,182])
 ylabel('Labor market tightness','FontSize',22)
 set(gca,'XTick',xt)
 set(gca,'XTickLabel','1964|1974|1984|1994|2004')
-h_legend=legend('Exact solution','Stochastic steady states','Steady states')
+h_legend=legend('Exact solution','Stochastic steady states','Steady states');
 set(h_legend,'FontSize',22);  
-print('-depsc','graph/solutionsTH_TFP.eps')
-
-
-
+print('-depsc','solutionsTH_TFP.eps')

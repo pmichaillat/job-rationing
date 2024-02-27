@@ -1,33 +1,34 @@
-%==================================================================================================
-%Diagram for equilibrium
-%==================================================================================================
+%%=============================================================
+%% Equilibrium diagrams for various search-and-matching models
+%%==============================================================
 
-%  %general setup
+% General setup
 clear all;close all;
-setup_graph;
+setup_equilibrium;
 
 UG=[0.01:0.001:0.18];
 NG=sort((1-UG)./(1-s));
 THG=uinv(UG);
 
-%MPS
+% Model with wage rigidity
 KMPS=r.*cMPS./q(THG);
 JMPS=(a-wMPS).*ones(size(UG));
 
-%JR
+% Job-rationing model
 KJR=r.*c./q(THG);
 JJR=B.*(1-UG).^(alpha-1) -w;
 
-%MP
+% Canonical model
 KMP=cMP./q(THG).*r+cMP.*betaMP.*(1-s).*delta.*THG
 JMP=(1-betaMP).*ones(size(UG));
 
-%SZ
+% Model with diminishing returns
 JSZ=(1-betaSZ)./(1-betaSZ.*(1-alphaSZ)).*alphaSZ.*(1-UG).^(alphaSZ-1)./(1-s).^(alphaSZ-1);
 KSZ=cSZ./q(THG).*r+cSZ.*betaMP.*(1-s).*delta.*THG;
 
-%-------------------------------------------------------------------------------- 
-%GRAPH MPS
+%% --- Plot equilibrium diagrams ---
+
+% Model with wage rigidity
 figure(2)
 clf
 plot(NG,JMPS(end:-1:1),'b','LineWidth',4)
@@ -40,10 +41,11 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/MPSAERq.eps')
+print('-depsc','MPSAERq.eps')
 
+% Canonical model
 figure(1)
 clf
 plot(NG,JMP(end:-1:1),'b','LineWidth',4)
@@ -56,11 +58,11 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/MPAERq.eps')
+print('-depsc','MPAERq.eps')
 
-
+% Canonical model with lower recruiting costs
 figure(3)
 clf
 plot(NG,JMP(end:-1:1),'b','LineWidth',4)
@@ -75,11 +77,11 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/MP2AERq.eps')
+print('-depsc','MP2AERq.eps')
 
-
+% Model with diminishing returns
 figure(4)
 clf
 plot(NG,JSZ(end:-1:1),'b','LineWidth',4)
@@ -92,11 +94,11 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/SZAERq.eps')
+print('-depsc','SZAERq.eps')
 
-
+% Job-rationing model
 figure(11)
 clf
 plot(NG,JJR(end:-1:1)+0.003,'b','LineWidth',4)
@@ -109,13 +111,13 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/JRAERq1.eps')
+print('-depsc','JRAERq1.eps')
 
 
-%  %---------------------------------------------------------------------
-%plot recession
+%% --- Plot recession in job-rationing model ---
+
 uz=0.1;
 thz=uinv(uz);
 res0=1;
@@ -137,6 +139,6 @@ xlim([0.85,1])
 set(gca,'YGrid','on')
 set(gca,'XGrid','on')
 set(gca,'FontSize',22)
-h_legend=legend('Gross marginal profit','Marginal recruiting expenses')
+h_legend=legend('Gross marginal profit','Marginal recruiting expenses');
 set(h_legend,'FontSize',22,'Location','NorthWest');  
-print('-depsc','graph/JRAERq2.eps')
+print('-depsc','JRAERq2.eps')

@@ -1,8 +1,6 @@
 function [b,rts,ia,nexact,nnumeric,lgroots,mcode] = aim_eig(h,neq,nlag,nlead,condn,uprbnd)
-
-                    
- %I changed b for belen.
-                
+         
+%
 %  [b,rts,ia,nexact,nnumeric,lgroots,mcode] = ...
 %                       aim_eig(h,neq,nlag,nlead,condn,uprbnd)
 %
@@ -33,7 +31,7 @@ function [b,rts,ia,nexact,nnumeric,lgroots,mcode] = aim_eig(h,neq,nlag,nlead,con
 %    nnumeric  Number of numeric shiftrights.
 %    lgroots   Number of roots greater in modulus than uprbnd.
 %    mcode     Return code: see function aimerr.
-
+%
 
 if(nlag<1 || nlead<1)
     error('Aim_eig: model must have at least one lag and one lead.');
@@ -70,8 +68,7 @@ rts      = zeros(qcols,1);
       return;
    end
 
-%  Build the companion matrix.  Compute the stability conditions, and
-%  combine them with the auxiliary initial conditions in q.  
+%  Build the companion matrix.  Compute the stability conditions, and combine them with the auxiliary initial conditions in q.  
 
 [a,ia,js] = build_a(h,qcols,neq);
 
@@ -92,9 +89,7 @@ end
 
 [nonsing,b] = reduform(q,qrows,qcols,bcols,neq,condn);
 
-%[nonsing,b] = reduform(q,qrows,qcols,bcols,neq,zeros(neq,neq*nlag),condn);
-
-    if ( nonsing & mcode==0) mcode =  1;
+if ( nonsing & mcode==0) mcode =  1;
 elseif (~nonsing & mcode==0) mcode =  5;
 elseif (~nonsing & mcode==3) mcode = 35;
 elseif (~nonsing & mcode==4) mcode = 45;

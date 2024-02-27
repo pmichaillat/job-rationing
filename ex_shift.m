@@ -1,8 +1,10 @@
 function [h,q,iq,nexact] = ex_shift(h,q,iq,qrows,qcols,neq)
 
+%
 % [h,q,iq,nexact] = ex_shift(h,q,iq,qrows,qcols,neq)
 %
 % Compute the exact shiftrights and store them in q.
+%
 
 nexact = 0;
 left   = 1:qcols;

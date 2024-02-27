@@ -1,10 +1,11 @@
-function [h,q,iq,nnumeric] = ...
-              numshift(h,q,iq,qrows,qcols,neq,condn)
+function [h,q,iq,nnumeric] = numshift(h,q,iq,qrows,qcols,neq,condn)
 
+%
 %  [h,q,iq,nnumeric] = ...
 %             numshift(h,q,iq,qrows,qcols,neq,condn)
 %
 % Compute the numeric shiftrights and store them in q.
+%
 
 nnumeric = 0;
 left     = 1:qcols;

@@ -1,7 +1,9 @@
 function [shiftmat] = shftrght(origmat,n)
 
+%
 % Shifts all rows of an input matrix right n columns
 % Zero out the leftmost n columns of the matrix
+%
 
 [rows,cols] = size(origmat);
 

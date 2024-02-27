@@ -1,10 +1,10 @@
 %=======================================================================
 %%Transform the array from weekly frequency to quarterly frequency.
-%Assumes always starts in January
+%% Assumes always starts in January
+%% Observation in columns
 %=======================================================================
 
 function RES=W2QUARTER(DAT)
-%observation in rows
 
 modulo=mod(size(DAT,1),12);
 if modulo>0

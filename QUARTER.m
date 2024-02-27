@@ -1,11 +1,10 @@
-%=======================================================================
-%%Transform the array from monthly frequency to quarterly frequency.
-%Assumes always starts in January
-%=======================================================================
+%%=======================================================================
+%% Transform the array from monthly frequency to quarterly frequency.
+%% Assume always starts in January
+%% Observation in columns
+%%=======================================================================
 
 function RES=QUARTER(DAT)
-%observation in rows
-
 
 modulo=mod(size(DAT,1),3);
 if modulo>0

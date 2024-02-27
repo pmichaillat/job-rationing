@@ -2,14 +2,13 @@
 %%  Solve linear DSGE model calibrated at weekly frequency
 %%==============================================================================
 
-
 function [AMAT,BMAT,SS,xeq,xvari,s3]=LIN_DSGE(w,gamma,alpha)
 
 global delta eta c a sigma_a omega rho_a s z q f u varsigma uinv 
 global W_bar C_bar TH_bar  N_bar H_bar U_bar UC_bar UF_bar Y_bar   
 global wpos cpos thpos npos hpos upos ucpos ufpos ypos apos  a_pos
 
-%%%%%%%%%%%  set up positions of variables   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Set up positions of variables ---
 
 xlead = 1;     % Number of leads in system (recruiting)
 xlag  = 1 ;     % Number of lags in system  (employment)
@@ -60,7 +59,7 @@ xcoef = xeq*(xlag+xlead+1);
 % row is an equation of the model
 cof = zeros(xeq,xcoef)  ;   % Coef matrix --- Each row is an equation
 
-%%%%%%%%%%%  steady-state shares   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Steady-state shares ---
 
 xx=alpha.*N_bar.^alpha;
 sa= w./xx  ;
@@ -71,50 +70,46 @@ s3=1./((1-s).*N_bar)-1;
 s4=UC_bar./(1-UC_bar);
 s5=UC_bar./U_bar;
 
+%% --- equilibrium conditions:  Setup coefficients vectors for each equation ---
 
-%%%%%%%%%%%  equilibrium conditions:  Setup coefficients vectors for each equation   %%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-% euler equation
+% Euler equation
 cof(1,azero)    =  1-gamma.*sa-sb;
 cof(1,nzero)    =  (alpha-1);
 cof(1,thlead)    = sc.*eta;
 cof(1,thzero)    =-eta.*sb;
 cof(1,alead)    = sc;
 
-
-% unemployment def.
+% Unemployment definition
 cof(2,uzero)   = s3;
 cof(2,nlag)   =  1;
 
-% theta def.
+% Definition of tightness
 cof(3,thzero)   =  1-eta;
 cof(3,hzero)    =  -1;
 cof(3,uzero)   =  1;
 
-%employment fluctuations
+% Employment fluctuations
 cof(4,nzero)   =  1;
 cof(4,nlag)    =  -(1-s);
 cof(4,hzero)    =  -s;
 
-%resource constraint
+% Resource constraint
 cof(5,yzero)   =  1;
 cof(5,azero)    =  -s2;
 cof(5,czero)   =  s2-1;
 cof(5,thzero)   = -s2*eta;
 cof(5,hzero)   = -s2;
 
-%output
+% Output
 cof(6,yzero)	=1;
 cof(6,azero)	=-1;
 cof(6,nzero)	=-alpha;
 
-%wage
+% Rigid wwage
 cof(7,wzero)=1;
 cof(7,azero)=-gamma;
 
-
-% correlated error term: technology
+% Correlated error term: technology
 cof(8,azero)  =  -1;
 cof(8,alag)   =  rho_a;
 cof(8,a_zero) =  1;
@@ -122,7 +117,7 @@ cof(8,a_zero) =  1;
 % 0 = SHOCKS
 cof(9,a_zero) =  1;
 
-%%%%%%%%%%%   Use AIM procedure to solve model  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Use AIM procedure to solve model  ---
 
 uprbnd = 1+1e-8;    % Tolerance values for AIM program 
 condn = 1e-8;

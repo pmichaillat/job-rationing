@@ -12,12 +12,11 @@ global apos thpos npos mplpos hpos wpos Rpos ynum upos
 
 Y=zeros(ynum,1);
 
-%%%%%%%%%%%   heta in steady-state in both cases  %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Theta in steady-state in both cases  ---
 
 TH=FINDTH(w,gamma);
 
-
-%%%%%%%%%%%  derive other steady-state values   %%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% --- Derive other steady-state values   ---
 
 Y(apos)=a;
 Y(thpos)=TH;

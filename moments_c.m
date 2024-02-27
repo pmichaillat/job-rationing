@@ -1,16 +1,18 @@
 %%==============================================================
-%% moments of linear DSGE model (already in logs)
+%% Moments of linear DSGE model (already in logs)
+%% Assume constant per-period vacancy-posting cost
 %%=============================================================
 
 clear all;close all;
 setupsimul_c;
-whp=10^5;%weight on hp filter (quarterly frequencies)- shimer (2005): 10^5 - conventional: 1600
-rep=100;%number samples - 10,000 in shimer(2005) - 100 in Michaillat (2010)
+whp=10^5; % Weight on HP filter from Shimer (2005)
+rep=100; % Number of replications
 cut=100;
-T=rep.*182*(3*4)+cut*(3*4)%samples of 182 quarters
-Eps=sigma_a.*randn(1,T);%realization of errors
+T=rep.*182*(3*4)+cut*(3*4)% Each sample has 182 quarters
+Eps=sigma_a.*randn(1,T); % Realization of errors
 
-%%===================================================================    simulation of weekly time series
+%% --- Simulation of weekly time series ---
+
 nvar=max(size(AMAT));
 x_past=zeros(nvar,1); %start from steady state
 shock=zeros(nvar,1);
@@ -28,12 +30,13 @@ yt=X(ypos,cut*(3*4)+1:end);
 at=X(apos,cut*(3*4)+1:end);
 wt=X(wpos,cut*(3*4)+1:end);
 
-%%===================================================================    make quarterly values
+%% --- Make quarterly values ---
+
 tht=tht(1:4:end);
 ut=ut(1:4:end);
 vt=vt(1:4:end);
 
-%quarterly averages
+% Quarterly averages
 tht=1./3.*(tht(1:3:end-2)+tht(2:3:end-1)+tht(3:3:end));
 ut=1./3.*(ut(1:3:end-2)+ut(2:3:end-1)+ut(3:3:end));
 vt=1./3.*(vt(1:3:end-2)+vt(2:3:end-1)+vt(3:3:end));
@@ -42,16 +45,14 @@ at=at(1:12:end);
 wt=wt(1:12:end);
 yt=yt(1:12:end);
 
+%% --- Moments as averages of sample - sample periods of 182 quarters ---
 
-
-
-%%===================================================================     moments as averages of sample - sample periods of 182 quarters
 ix=0;moy=[];dev=[];autoc=[];Q=[];
 
 for i=1:rep
 ran=[1+ix:182+ix];
 D=[ut(ran)',vt(ran)',tht(ran)',wt(ran)',yt(ran)',at(ran)'];
-%%HP-filter all samples of model-generated series
+% HP-filter all samples of model-generated series
 for j=1:6
 	D(:,j)=hpfilter(D(:,j),whp);
 end
@@ -65,13 +66,11 @@ autoc1=mean(autoc,2);autoc2=std(autoc,0,2);
 Q1=mean(Q,3);Q2=std(Q,0,3);
 
 TAB3=[dev1,autoc1,Q1];
-fid = fopen('table/meanc.txt', 'wt');
+fid = fopen('mean_c.txt', 'wt');
 fprintf(fid, '& %4.3f  & %4.3f & %4.3f & %4.3f  & %4.3f & %4.3f \\\\ \n', TAB3);
 fclose(fid);
 
-
 TAB3=[dev2,autoc2,Q2];
-fid = fopen('table/variancec.txt', 'wt');
+fid = fopen('variance_c.txt', 'wt');
 fprintf(fid, ' & (%4.3f) & (%4.3f) & (%4.3f) & (%4.3f)  & (%4.3f) & (%4.3f)\\\\ \n', TAB3);
 fclose(fid);
-
